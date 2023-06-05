@@ -23,12 +23,12 @@
     <label for="quantity">Quantity</label>
     <input type = "number" name="quantity" id="quantity" value="${product.quantity}"/>
     <label for="category">Category</label>
-    <select name="category" id="category" value="${product.category}">
-        <c:forEach items="${categories}" var="category">
-            <option value="${category.id}">${category.name}</option>
-        </c:forEach>
-    </select>
-
+<%--    <select name="category" id="category" value="${product.category}">--%>
+<%--        <c:forEach items="${categories}" var="category">--%>
+<%--            <option value="${category.id}">${category.name}</option>--%>
+<%--        </c:forEach>--%>
+<%--    </select>--%>
+    <input type = "text" name="category" id="category" value="${product.category}"/>
     <input type="submit" value="SUBMIT"/>
 </form>
 <a href="/products">Back</a>

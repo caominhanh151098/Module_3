@@ -13,23 +13,26 @@
 </head>
 <body>
 <c:if test="${requestScope['message'] != null}">
-    <h1>${message}</h1>
+    <h3>${message}</h3>
 </c:if>
 <form action="/products?action=add" method="post">
-    <label for="name">Name</label>
-    <input type = "text" name="name" id="name" value="${product.name}"/>
-    <label for="price">Price</label>
-    <input type = "number" step="0.1" name="price" id="price" value="${product.price}"/>
-    <label for="quantity">Quantity</label>
-    <input type = "number" name="quantity" id="quantity" value="${product.quantity}"/>
-    <label for="category">Category</label>
-<%--    <select name="category" id="category" value="${product.category}">--%>
-<%--        <c:forEach items="${categories}" var="category">--%>
-<%--            <option value="${category.id}">${category.name}</option>--%>
-<%--        </c:forEach>--%>
-<%--    </select>--%>
-    <input type = "text" name="category" id="category" value="${product.category}"/>
-    <input type="submit" value="SUBMIT"/>
+    <fieldset>
+        <legend>Edit product</legend>
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" value="${product.name}"/>
+        <label for="price">Price</label>
+        <input type="number" step="0.1" name="price" id="price" value="${product.price}"/>
+        <label for="quantity">Quantity</label>
+        <input type="number" name="quantity" id="quantity" value="${product.quantity}"/>
+        <label for="category">Category</label>
+        <%--    <select name="category" id="category" value="${product.category}">--%>
+        <%--        <c:forEach items="${categories}" var="category">--%>
+        <%--            <option value="${category.id}">${category.name}</option>--%>
+        <%--        </c:forEach>--%>
+        <%--    </select>--%>
+        <input type="text" name="category" id="category" value="${product.category}"/>
+        <input type="submit" value="SUBMIT"/>
+    </fieldset>
 </form>
 <a href="/products">Back</a>
 </body>

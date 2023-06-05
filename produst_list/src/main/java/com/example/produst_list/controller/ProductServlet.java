@@ -78,7 +78,7 @@ public class ProductServlet extends HttpServlet {
         Product product = new Product(id,name,price,quantity,category);
         productService.editProduct(product);
         req.setAttribute("product",product);
-        req.setAttribute("message", "edited");
+        req.setAttribute("message", "Edited");
         req.getRequestDispatcher("edit.jsp").forward(req,resp);
     }
 

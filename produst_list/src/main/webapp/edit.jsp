@@ -13,19 +13,22 @@
 </head>
 <body>
 <c:if test="${requestScope['message'] != null}">
-    <h1>${message}</h1>
+    <h3>${message}</h3>
 </c:if>
 <form action="/products?action=edit" method="post">
-    <input type="hidden" name="id" value="${product.id}" />
-    <label for="name">Name</label>
-    <input type = "text" name="name" id="name" value="${product.name}"/>
-    <label for="price">Price</label>
-    <input type = "number" step="0.1" name="price" id="price" value="${product.price}"/>
-    <label for="quantity">Quantity</label>
-    <input type = "number" name="quantity" id="quantity" value="${product.quantity}"/>
-    <label for="category">Category</label>
-    <input type = "text" name="category" id="category" value="${product.category}"/>
-    <input type="submit" value="EDIT"/>
+    <fieldset>
+        <legend>Edit product</legend>
+        <input type="hidden" name="id" value="${product.id}"/>
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" value="${product.name}"/>
+        <label for="price">Price</label>
+        <input type="number" step="0.1" name="price" id="price" value="${product.price}"/>
+        <label for="quantity">Quantity</label>
+        <input type="number" name="quantity" id="quantity" value="${product.quantity}"/>
+        <label for="category">Category</label>
+        <input type="text" name="category" id="category" value="${product.category}"/>
+        <input type="submit" value="EDIT"/>
+    </fieldset>
 </form>
 <a href="/products">Back</a>
 </body>

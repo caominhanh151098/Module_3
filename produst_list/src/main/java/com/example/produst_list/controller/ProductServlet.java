@@ -1,5 +1,6 @@
 package com.example.produst_list.controller;
 
+import com.example.produst_list.model.Category;
 import com.example.produst_list.model.Product;
 import com.example.produst_list.services.CategoryService;
 import com.example.produst_list.services.ProductService;
@@ -16,6 +17,7 @@ import java.util.List;
 public class ProductServlet extends HttpServlet {
 
     ProductService productService = new ProductService();
+    CategoryService categoryService = new CategoryService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -48,6 +50,7 @@ public class ProductServlet extends HttpServlet {
     private void showEditProduct(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int id = Integer.parseInt(req.getParameter("id"));
         Product product = productService.findById(id);
+        req.setAttribute("categories", categoryService.findAll());
         req.setAttribute("product",product);
         req.getRequestDispatcher("edit.jsp").forward(req,resp);
     }
@@ -74,7 +77,8 @@ public class ProductServlet extends HttpServlet {
         String name = req.getParameter("name");
         double price = Double.parseDouble(req.getParameter("price"));
         int quantity = Integer.parseInt(req.getParameter("quantity"));
-        String category = req.getParameter("category");
+        int categoryId = Integer.parseInt(req.getParameter("category"));
+        Category category = categoryService.findById(categoryId);
         Product product = new Product(id,name,price,quantity,category);
         productService.editProduct(product);
         req.setAttribute("product",product);
@@ -94,7 +98,7 @@ public class ProductServlet extends HttpServlet {
         req.getRequestDispatcher("product.jsp").forward(req, resp);
     }
     private void showAddProduct(HttpServletRequest res, HttpServletResponse resp) throws ServletException, IOException {
-        res.setAttribute("categories", CategoryService.categories);
+        res.setAttribute("categories", categoryService.findAll());
         res.getRequestDispatcher("/create.jsp")
                 .forward(res, resp);
     }
@@ -104,8 +108,9 @@ public class ProductServlet extends HttpServlet {
         String name = req.getParameter("name");
         double price = Double.parseDouble(req.getParameter("price"));
         int quantity = Integer.parseInt(req.getParameter("quantity"));
-        String category = req.getParameter("category");
-        Product product = new Product(name, price, quantity,category);
+        int categoryId = Integer.parseInt(req.getParameter("category"));
+        Category category = categoryService.findById(categoryId);
+        Product product = new Product(name, price, quantity,categoryId);
         productService.addProduct(product);
         req.setAttribute("message","Added");
         req.setAttribute("product", product);

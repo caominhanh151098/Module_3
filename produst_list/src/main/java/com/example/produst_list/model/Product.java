@@ -1,35 +1,27 @@
 package com.example.produst_list.model;
 
+import com.example.produst_list.services.CategoryService;
+
 public class Product {
     private int id;
     private String name;
     private double price;
     private int quantity;
-    private String category;
-
-    private Category categoryObject;
-
-    public Category getCategoryObject() {
-        return categoryObject;
-    }
-
-    public void setCategoryObject(Category categoryObject) {
-        this.categoryObject = categoryObject;
-    }
-
+    private Category category;
     private static int currentId;
 
+    private final CategoryService categoryService = new CategoryService();
 
 
-    public Product(String name, double price, int quantity, String category) {
+    public Product(String name, double price, int quantity, int categoryId) {
         this.id = currentId++;
         this.name = name;
         this.price = price;
         this.quantity = quantity;
-        this.category = category;
+        this.category = categoryService.findById(categoryId);
     }
 
-    public Product(int id, String name, double price, int quantity, String category) {
+    public Product(int id, String name, double price, int quantity, Category category) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -69,11 +61,11 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public String getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 

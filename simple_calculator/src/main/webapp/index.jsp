@@ -16,7 +16,7 @@
       <table>
       <tr>
         <td><label for="o1">First operand: </label></td>
-        <td><input type="text" name="o1" id="o1"></td>
+        <td><input type="number" step="0.001" name="o1" id="o1"></td>
       </tr>
       <tr>
         <td><label for="op">First operand: </label></td>
@@ -31,7 +31,7 @@
       </tr>
       <tr>
         <td><label for="o2">First operand: </label></td>
-        <td><input type="text" name="o2" id="o2"></td>
+        <td><input type="number" step="0.001" name="o2" id="o2"></td>
       </tr>
       <tr>
         <td></td>

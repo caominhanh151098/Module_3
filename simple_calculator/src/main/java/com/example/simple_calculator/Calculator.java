@@ -37,29 +37,35 @@ public class Calculator extends HttpServlet {
         String op = request.getParameter("op");
         String o2 = request.getParameter("o2");
 
-        if (isNumeric(o1) == false || isNumeric(o2) == false) {
-            message = "Số nhập vào không phải là số!";
-            request.setAttribute("message", message);
-            request.getRequestDispatcher("index.jsp").forward(request, response);
-        }
+        double num1 = Double.parseDouble(o1);
         double num2 = Double.parseDouble(o2);
-        if (op.equals("/") && num2 == 0L) {
-            message = "Không thể chia cho 0!";
-            request.setAttribute("message", message);
-            request.getRequestDispatcher("index.jsp").forward(request, response);
-        } else {
-            String operator = o1 + op + o2;
-            double result;
-            try {
-                result = (double) engine.eval(operator);
-            } catch (ScriptException e) {
-                throw new RuntimeException(e);
-            }
-            message = operator + " = " + result;
-            request.setAttribute("message", message);
-            request.getRequestDispatcher("index.jsp").forward(request, response);
+        double result = 0;
+        switch (op) {
+            case "+":
+                result = num1 + num2;
+                message = String.format("%s + %s = %s", num1, num2, result);
+                break;
+            case "-":
+                result = num1 - num2;
+                message = String.format("%s - %s = %s", num1, num2, result);
+                break;
+            case "*":
+                result = num1 * num2;
+                message = String.format("%s * %s = %s", num1, num2, result);
+                break;
+            case "/":
+                if (num2 == 0)
+                    message = "Không thể chia cho 0";
+                else {
+                    result = num1 / num2;
+                    message = String.format("%s / %s = %s", num1, num2, result);
+                }
+                break;
         }
+        request.setAttribute("message", message);
+        request.getRequestDispatcher("index.jsp").forward(request, response);
     }
+
 
     public void destroy() {
     }

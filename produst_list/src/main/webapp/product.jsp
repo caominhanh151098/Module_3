@@ -34,7 +34,7 @@
             <td>${product.name}</td>
             <td>${product.price}</td>
             <td>${product.quantity}</td>
-            <td>${product.category}</td>
+            <td>${product.category.name}</td>
             <td>
                 <a href="/products?action=edit&id=${product.id}">
                     <button>Edit</button>

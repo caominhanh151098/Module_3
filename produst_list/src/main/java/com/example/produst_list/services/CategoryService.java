@@ -6,11 +6,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryService {
-    public static List<Category> categories;
+    static List<Category> categories;
 
     static {
         categories = new ArrayList<>();
-        categories.add(new Category(1, "Ao"));
-        categories.add(new Category(2, "Quan"));
+        categories.add(new Category(1, "Áo"));
+        categories.add(new Category(2, "Quần"));
+    }
+
+    public List<Category> findAll() {
+        return categories;
+    }
+
+    public Category findById(int id) {
+        return categories.stream().filter(c -> c.getId() == id).findFirst().orElse(null);
     }
 }
